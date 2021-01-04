@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Boxing_Stage_ASCII.png-b24acb6e0bfd8f82ab5aa79c7bc51763.stex"
+path="res://.import/Pole.png-dbd400fd5aa3a3788288a4f8fe14f5ef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visuals/Boxing_Stage_ASCII.png"
-dest_files=[ "res://.import/Boxing_Stage_ASCII.png-b24acb6e0bfd8f82ab5aa79c7bc51763.stex" ]
+source_file="res://Assets/Visuals/Pole.png"
+dest_files=[ "res://.import/Pole.png-dbd400fd5aa3a3788288a4f8fe14f5ef.stex" ]
 
 [params]
 
