@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Pole_ASCII.png-4ab348e8a4710382e3e4f08b7ff11620.stex"
+path="res://.import/Pole_ASCII.PNG-d5454367c490b7201364102b1a167ea6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visuals/Pole_ASCII.png"
-dest_files=[ "res://.import/Pole_ASCII.png-4ab348e8a4710382e3e4f08b7ff11620.stex" ]
+source_file="res://Assets/Visuals/Pole_ASCII.PNG"
+dest_files=[ "res://.import/Pole_ASCII.PNG-d5454367c490b7201364102b1a167ea6.stex" ]
 
 [params]
 

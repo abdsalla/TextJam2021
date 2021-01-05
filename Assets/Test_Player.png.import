@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Boxing_Stage_ASCII.PNG-ba74c407ff5bd34a5c7e9e2a1265190c.stex"
+path="res://.import/Test_Player.png-9f19449106c0c62275e5eaf3d4cdacbf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Visuals/Boxing_Stage_ASCII.PNG"
-dest_files=[ "res://.import/Boxing_Stage_ASCII.PNG-ba74c407ff5bd34a5c7e9e2a1265190c.stex" ]
+source_file="res://Assets/Test_Player.png"
+dest_files=[ "res://.import/Test_Player.png-9f19449106c0c62275e5eaf3d4cdacbf.stex" ]
 
 [params]
 
