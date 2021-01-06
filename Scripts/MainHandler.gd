@@ -1,0 +1,94 @@
+#*******************************************************************
+# This is the main script for running the game.
+#
+# It has all the necessary functions for writing text, playing sound,
+# and managing the main game scene.
+#********************************************************************
+
+extends Node2D
+
+# Define nodes we will need access too
+var opp_scroll: Label			# Scroll label for printing dialogue (opponent)
+var player_scroll: Label		# Scroll label for printing dialogue (player)
+var player_hlth_txt: Label		# Label for displaying player health
+var opp_hlth_txt:	Label		# Label for displaying opponent health
+var insults_list:	ItemList	# List of player selectable insults
+var comebacks_list: ItemList	# List of player selectable comebacks
+
+# Script types
+var Opponent = preload("res://Scripts/Opponent.gd")
+var Player = preload("res://Scripts/Player.gd")
+
+# Create new player and opponent objects on ready
+onready var opponent = Opponent.new()
+onready var player = Player.new()
+
+# Other necessary variables
+onready var player_health: int = 5	# Player health
+onready var opp_health: int = 5		# Opponent health
+onready var delta_count: float = 0	# Test for printing random insults
+
+# Writes the text one character at a time
+func write_text_one_char(txt: String, charScroll: Label):
+	charScroll.text = str(txt)	# @Duli: This is just a placeholder for now
+
+
+# Plays a sound when scrolling through text
+func text_scoll_sound():
+	pass
+
+
+# Writes only the opponent text
+func write_opponent_txt(txt: String):
+	# Write to opponent dialogue box
+	write_text_one_char(txt, opp_scroll)
+
+
+# Writes only to the player text
+func write_player_txt(txt: String):
+	# Write to player dialogue box
+	write_text_one_char(txt, player_scroll)
+
+
+# Calculate player damage based on opponent's comeback
+func calc_player_damage(comeback_score: int):
+	pass
+
+
+# Get the insult score for opponent's insult
+func get_opponent_insult_score(insult_score: int):
+	pass
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	# Get the child components
+	opp_scroll = get_node("GrayTextScrollingBackground/Opponent_Scroll")
+	player_scroll = get_node("GrayTextScrollingBackground/Player_Scroll")
+	player_hlth_txt = get_node("GrayTextScrollingBackground/Player_Health")
+	opp_hlth_txt = get_node("GrayTextScrollingBackground/Opponent_Health") 
+	insults_list = get_node("BlackTextOptionBackground/Insults_List")
+	comebacks_list = get_node("BlackTextOptionBackground/Comebacks_List")
+	
+	# Initialize the child components
+	opp_scroll.text = ""
+	player_scroll.text = ""
+	player_hlth_txt.text = "Player: " + str(player_health)
+	opp_hlth_txt.text = "Opponent: " + str(opp_health)
+	
+	### @Duli: Initialize the lists of comebacks and insults with defaults here ###
+	
+	# Connect the player and opponent scripts
+	opponent.connect("write_txt", self, "write_opponent_txt")
+	opponent.connect("comeback_score", self, "calc_player_damage")
+	opponent.connect("insult_score", self, "get_opponent_insult_score") 
+	opponent.start()
+	
+	### @Duli: Do the same as lines 64 & 65 for the player to connect write signals ###
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	delta_count += delta
+	print(delta_count)
+	if delta_count - 10 > 0:
+		opponent.insult()
