@@ -1,9 +1,9 @@
 class_name Opponent
 
 # Signals for interacting with the main level script
-signal write_txt(txt)			# Signal for writing text upwards
-signal comeback_score(score)	# Signal for the score of a comeback
-signal insult_score(score)		# Signal for the score of an insult
+signal write_txt(txt)				# Signal for writing text upwards
+signal comeback_score(score, ins)	# Signal for the score of a comeback
+signal insult_score(score)			# Signal for the score of an insult
 
 # Dialogue dictionaries
 var insults = {
@@ -37,5 +37,19 @@ func insult():
 
 
 # Calculates the best comeback for a given insult 
-func comeback(score: int):
-	pass
+func comeback(insult_score: int):
+	var keys = comebacks.keys()
+	
+	# Find the three closest matches to the insult
+	var matches = []
+	for key in keys:
+		var diff = abs(insult_score - key)
+		if diff < 3:
+			matches.append(key)
+	
+	# Randomly select a comeback from the three closest matches
+	var c_score = matches[randi() % 3]
+	var c = comebacks[c_score]
+	
+	emit_signal("write_txt", c)
+	emit_signal("comeback_score", c_score, insult_score)

@@ -24,9 +24,12 @@ onready var opponent = Opponent.new()
 onready var player = Player.new()
 
 # Other necessary variables
-onready var player_health: int = 5	# Player health
-onready var opp_health: int = 5		# Opponent health
+onready var player_health: int = 15	# Player health
+onready var opp_health: int = 15		# Opponent health
+
+### FOR TESTING ONLY ###
 onready var delta_count: float = 0	# Test for printing random insults
+onready var start_time: float = 0	# Tracks timer start time
 
 # Writes the text one character at a time
 func write_text_one_char(txt: String, charScroll: Label):
@@ -50,9 +53,30 @@ func write_player_txt(txt: String):
 	write_text_one_char(txt, player_scroll)
 
 
+# Function for updating player health txt
+func update_player_health():
+	player_hlth_txt.text = "Player: " + str(player_health)
+
+
+# Function for updating opponent health text
+func update_opponent_health():
+	opp_hlth_txt.text = "Opponent: " + str(opp_health)
+
 # Calculate player damage based on opponent's comeback
-func calc_player_damage(comeback_score: int):
-	pass
+func calc_player_damage(comeback_score: int, init_insult: int):
+	var diff = abs(init_insult - comeback_score)
+	
+	if diff == 0:
+		player_health -= 5
+	elif diff == 1:
+		player_health -= 2
+	else:
+		player_health -= 0
+		
+	if player_health < 0:
+		player_health = 0
+	
+	update_player_health()
 
 
 # Get the insult score for opponent's insult
@@ -88,7 +112,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if delta_count == 0:
+		start_time = delta
 	delta_count += delta
-	print(delta_count)
-	if delta_count - 10 > 0:
-		opponent.insult()
+	if delta_count - start_time > 10:
+		var keys = player.insults.keys()
+		var insult = keys[randi() % 4]
+		player_scroll.text = player.insults[insult]
+		opponent.comeback(insult)
+		start_time = delta_count
