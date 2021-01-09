@@ -117,9 +117,9 @@ func _process(delta):
 	if delta_count == 0:
 		start_time = delta
 	delta_count += delta
-	if delta_count - start_time > 10:
+	if delta_count - start_time > 3:
 		var keys = player.insults.keys()
 		var insult = keys[randi() % 4]
-		player_scroll.text = player.insults[insult]
-		opponent.comeback(insult)
+		player_scroll.text = insult
+		opponent.comeback(player.insults[insult])
 		start_time = delta_count

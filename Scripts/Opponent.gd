@@ -7,7 +7,7 @@ signal insult_score(score)			# Signal for the score of an insult
 
 # Dialogue dictionaries
 var insults = {
-	"Insult": 0,
+	"Insult 1": 0,
 	"Insult 2": 1, 
 	"Insult 3": 1,
 	"Insult 4": 2
@@ -30,26 +30,29 @@ func start():
 func insult():
 	# Randomly select an item from the insults dictionary
 	var keys = insults.keys()
-	var rand_key = keys[randi() % keys.size()]
-	var rand_insult = insults[rand_key]
+	var rand_insult = keys[randi() % keys.size()]
+	var rand_key = insults.get(rand_insult)
 	emit_signal("write_txt", rand_insult)
 	emit_signal("insult_score", rand_key)
 
 
 # Calculates the best comeback for a given insult 
 func comeback(insult_score: int):
-	var keys = comebacks.keys()
+	var scores = comebacks.values()
+	var dialogue = comebacks.keys()
 	
 	# Find the three closest matches to the insult
-	var matches = []
-	for key in keys:
-		var diff = abs(insult_score - key)
+	var score_matches = []
+	var comeback_matches = []
+	for i in scores.size():
+		var diff = abs(insult_score - scores[i])
 		if diff < 3:
-			matches.append(key)
+			score_matches.append(scores[i])
+			comeback_matches.append(dialogue[i])
 	
 	# Randomly select a comeback from the three closest matches
-	var c_score = matches[randi() % 3]
-	var c = comebacks[c_score]
-	
+	var idx = (randi() % 3)
+	var c_score = score_matches[idx]
+	var c = comeback_matches[idx]
 	emit_signal("write_txt", c)
 	emit_signal("comeback_score", c_score, insult_score)
