@@ -66,8 +66,11 @@ margin_left = 158.272
 margin_top = 97.136
 margin_right = 490.272
 margin_bottom = 120.136
-text = "Instults"
+text = "Insults"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Comebacks_Label" type="Label" parent="BlackTextOptionBackground"]
 margin_left = 553.911
@@ -124,13 +127,19 @@ margin_bottom = 41.1663
 text = "Hell yeah! Protoganist time!"
 
 [node name="Opponent_Health" type="Label" parent="GrayTextScrollingBackground"]
-margin_left = 13.0
-margin_top = -55.0
-margin_right = 115.0
-margin_bottom = -25.0
+margin_left = 12.1091
+margin_top = -49.6546
+margin_right = 114.109
+margin_bottom = -19.6546
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Player_Health" type="Label" parent="GrayTextScrollingBackground"]
-margin_left = 909.0
+margin_left = 909.891
 margin_top = -44.0
-margin_right = 1010.0
+margin_right = 1010.89
 margin_bottom = -18.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

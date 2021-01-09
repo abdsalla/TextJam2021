@@ -1,5 +1,7 @@
 class_name Player
 
+signal write_pl_txt(txt)
+
 # Dialogue dictionaries
 var insults = {
 	0: "Insult 1",
@@ -17,4 +19,4 @@ var comebacks = {
 	
 # Called at the start of the game (MainHandler's _ready function)
 func start():
-	pass	# @Duli: Put your code here
+	emit_signal("write_pl_txt", "Hell yeah!")

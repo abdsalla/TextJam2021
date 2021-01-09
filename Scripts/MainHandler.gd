@@ -103,6 +103,8 @@ func _ready():
 	### @Duli: Initialize the lists of comebacks and insults with defaults here ###
 	
 	# Connect the player and opponent scripts
+	player.connect("write_pl_txt", self, "write_player_txt")
+	player.start()
 	opponent.connect("write_txt", self, "write_opponent_txt")
 	opponent.connect("comeback_score", self, "calc_player_damage")
 	opponent.connect("insult_score", self, "get_opponent_insult_score") 
