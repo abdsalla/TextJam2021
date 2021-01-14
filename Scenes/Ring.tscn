@@ -1,16 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/MainHandler.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Visuals/Boxing_Stage_ASCII.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Visuals/Pole_ASCII.PNG" type="Texture" id=3]
-[ext_resource path="res://Assets/Visuals/Test_Opponent(ASCII).png" type="Texture" id=4]
-[ext_resource path="res://Assets/Visuals/Test_Player(ASCII).png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sounds/TextScrollingBlip1.wav" type="AudioStream" id=6]
-[ext_resource path="res://Assets/Sounds/TextScrollingBlip.wav" type="AudioStream" id=7]
-[ext_resource path="res://Assets/Sounds/TextScrollingBlip4.wav" type="AudioStream" id=8]
-[ext_resource path="res://Assets/Sounds/TextScrollingBlip3.wav" type="AudioStream" id=9]
-[ext_resource path="res://Assets/Sounds/TextScrollingBlip5.wav" type="AudioStream" id=10]
-[ext_resource path="res://Assets/Sounds/TextScrollingBlip2.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Test_Opponent(ASCII).png" type="Texture" id=4]
+[ext_resource path="res://Assets/Test_Player(ASCII).png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -33,7 +27,7 @@ position = Vector2( 434.983, 106.806 )
 script = ExtResource( 1 )
 
 [node name="Boxing_Stage_ASCII" type="Sprite" parent="."]
-position = Vector2( 50.2427, 64.1511 )
+position = Vector2( 18.5093, 64.1511 )
 scale = Vector2( 0.620386, 0.600267 )
 texture = ExtResource( 2 )
 
@@ -104,9 +98,6 @@ margin_top = 215.313
 margin_right = 593.116
 margin_bottom = 280.313
 color = Color( 0.647059, 0.627451, 0.627451, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Opponent_Face" type="AnimatedSprite" parent="GrayTextScrollingBackground"]
 position = Vector2( 65.3242, 35.0462 )
@@ -114,35 +105,27 @@ scale = Vector2( 0.0342975, 0.0279858 )
 frames = SubResource( 1 )
 animation = "Face_Anim"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GrayTextScrollingBackground/Opponent_Face"]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GrayTextScrollingBackground/Opponent_Face"]
+
 [node name="Player_Face" type="AnimatedSprite" parent="GrayTextScrollingBackground"]
 position = Vector2( 960.983, 42.0723 )
 scale = Vector2( 0.0339427, 0.0309362 )
 frames = SubResource( 2 )
 animation = "Face_Anim"
 
-[node name="Voice Blip1" type="AudioStreamPlayer2D" parent="GrayTextScrollingBackground/Player_Face"]
-stream = ExtResource( 7 )
-volume_db = 9.087
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GrayTextScrollingBackground/Player_Face"]
 
-[node name="Voice Blip2" type="AudioStreamPlayer2D" parent="GrayTextScrollingBackground/Player_Face"]
-stream = ExtResource( 6 )
-volume_db = 9.087
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GrayTextScrollingBackground/Player_Face/AudioStreamPlayer"]
 
-[node name="Voice Blip3" type="AudioStreamPlayer2D" parent="GrayTextScrollingBackground/Player_Face"]
-stream = ExtResource( 11 )
-volume_db = 9.087
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GrayTextScrollingBackground/Player_Face"]
 
-[node name="Voice Blip4" type="AudioStreamPlayer2D" parent="GrayTextScrollingBackground/Player_Face"]
-stream = ExtResource( 9 )
-volume_db = 9.087
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="GrayTextScrollingBackground/Player_Face"]
 
-[node name="Voice Blip5" type="AudioStreamPlayer2D" parent="GrayTextScrollingBackground/Player_Face"]
-stream = ExtResource( 8 )
-volume_db = 9.087
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="GrayTextScrollingBackground/Player_Face"]
 
-[node name="Voice Blip6" type="AudioStreamPlayer2D" parent="GrayTextScrollingBackground/Player_Face"]
-stream = ExtResource( 10 )
-volume_db = 9.087
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="GrayTextScrollingBackground/Player_Face"]
 
 [node name="Opponent_Scroll" type="Label" parent="GrayTextScrollingBackground"]
 margin_left = 131.053

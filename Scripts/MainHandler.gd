@@ -34,9 +34,10 @@ onready var opp_health: int = 15	# Opponent health
 
 # Writes the text one character at a time
 func write_text_one_char(txt: String, charScroll: Label):
-	for c in txt:
-		text_scoll_sound()
-		charScroll.text = c
+#	for c in txt:
+#		text_scoll_sound()
+#		charScroll.text = c
+	charScroll.text = txt
 		
 
 # Plays a sound when scrolling through text
