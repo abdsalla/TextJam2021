@@ -1,7 +1,7 @@
 class_name Opponent
 
 # Signals for interacting with the main level script
-signal write_txt(txt)				# Signal for writing text upwards
+signal opp_dia(txt)				# Signal for writing text upwards
 signal comeback_score(score, ins)	# Signal for the score of a comeback
 signal insult_score(score)			# Signal for the score of an insult
 

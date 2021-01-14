@@ -14,6 +14,10 @@ var player_hlth_txt: Label		# Label for displaying player health
 var opp_hlth_txt:	Label		# Label for displaying opponent health
 var insults_list:	ItemList	# List of player selectable insults
 var comebacks_list: ItemList	# List of player selectable comebacks
+var pl_voice_blip
+var opp_voice_blip
+var start_time: float
+var delta_count:= 0.0
 
 # Script types
 var Opponent = preload("res://Scripts/Opponent.gd")
@@ -25,21 +29,25 @@ onready var player = Player.new()
 
 # Other necessary variables
 onready var player_health: int = 15	# Player health
-onready var opp_health: int = 15		# Opponent health
+onready var opp_health: int = 15	# Opponent health
 
-### FOR TESTING ONLY ###
-onready var delta_count: float = 0	# Test for printing random insults
-onready var start_time: float = 0	# Tracks timer start time
 
 # Writes the text one character at a time
 func write_text_one_char(txt: String, charScroll: Label):
-	charScroll.text = str(txt)	# @Duli: This is just a placeholder for now
-
+	for c in txt:
+		text_scoll_sound()
+		charScroll.text = c
+		
 
 # Plays a sound when scrolling through text
 func text_scoll_sound():
-	pass
-
+	# First pick random range
+	# List of sounds to play from
+	pl_voice_blip.play()
+	
+	while pl_voice_blip.playing == true:
+		pass
+	
 
 # Writes only the opponent text
 func write_opponent_txt(txt: String):
@@ -61,6 +69,7 @@ func update_player_health():
 # Function for updating opponent health text
 func update_opponent_health():
 	opp_hlth_txt.text = "Opponent: " + str(opp_health)
+
 
 # Calculate player damage based on opponent's comeback
 func calc_player_damage(comeback_score: int, init_insult: int):
@@ -93,6 +102,8 @@ func _ready():
 	opp_hlth_txt = get_node("GrayTextScrollingBackground/Opponent_Health") 
 	insults_list = get_node("BlackTextOptionBackground/Insults_List")
 	comebacks_list = get_node("BlackTextOptionBackground/Comebacks_List")
+	pl_voice_blip = get_node("GrayTextScrollingBackground/Player_Face/Voice Blip")
+	opp_voice_blip = get_node("GrayTextScrollingBackground/Opponent_Face/Voice Blip")
 	
 	# Initialize the child components
 	opp_scroll.text = ""
@@ -103,8 +114,8 @@ func _ready():
 	### @Duli: Initialize the lists of comebacks and insults with defaults here ###
 	
 	# Connect the player and opponent scripts
-	player.connect("write_pl_txt", self, "write_player_txt")
-	player.start()
+	player.connect("pl_dia", self, "write_player_txt")
+	player.start(player_scroll.text)
 	opponent.connect("write_txt", self, "write_opponent_txt")
 	opponent.connect("comeback_score", self, "calc_player_damage")
 	opponent.connect("insult_score", self, "get_opponent_insult_score") 
@@ -114,12 +125,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if delta_count == 0:
+	if delta_count <= 0:
 		start_time = delta
 	delta_count += delta
 	if delta_count - start_time > 3:
-		var keys = player.insults.keys()
-		var insult = keys[randi() % 4]
-		player_scroll.text = insult
-		opponent.comeback(player.insults[insult])
-		start_time = delta_count
+		write_player_txt("bibbity boop")

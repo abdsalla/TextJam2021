@@ -1,6 +1,8 @@
 class_name Player
 
-signal write_pl_txt(txt)
+signal pl_dia(txt)
+
+var pvb1
 
 # Dialogue dictionaries
 var insults = {
@@ -18,5 +20,7 @@ var comebacks = {
 	}
 	
 # Called at the start of the game (MainHandler's _ready function)
-func start():
-	emit_signal("write_pl_txt", "Hell yeah!")
+func start(input: String):
+	var text = input
+	
+	emit_signal("write_pl_txt", input)
